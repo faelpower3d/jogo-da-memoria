@@ -1,0 +1,91 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url(../img/img.jpg);
+    user-select: none;
+    
+}
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background: linear-gradient(
+        172deg,
+        #bbb41d 14% , 
+        #b4ac16 57%,
+        #000000 100%
+       
+    );
+    padding: 40px 60px;
+}
+h2{
+    font-size: 3em;
+    color: #fff;
+    text-transform: uppercase;/* deixa letras maiuscula */
+    letter-spacing: 0.1em; /* coloca espaço entre s letras */
+}
+.reset{
+    padding: 15px 20px;
+    width: 100%;
+    color: black;
+    background-color: #fff;
+    border: none;
+    font-size: 1.5em; /* tamanho da fonte  */
+    letter-spacing: 0.1cm;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+}
+.reset:focus{
+    color: #ec38bc;
+    background-color: #262809;
+}
+.game{    
+    width: 430px;
+    height: 430px;
+/* abaixo é uma quebra de linha automatica, flex-wrap necessita do display: flex; */
+    display: flex;
+    flex-wrap: wrap;/*se não cabe no px definido ele joga pra baixo*/
+    gap: 10px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+.item{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    /* cursor: pointer; */
+
+    font-size: 3em;
+    transform: rotateY(180deg);
+    transition: 0.29s;    
+}
+
+.item::after{
+    content: "☢";
+    text-align: center;
+    position: absolute;
+    inset: 0; /*sobrepoem exatamente o ponto 0 do elemento*/
+    background-color: yellow;    
+    transition: 0.25s;
+    transform: rotateY(0deg);
+    /* back face não deixa resquicio, garante que tampará tudo */
+    backface-visibility: hidden;/*alem de sobre escrever ele deixa escondido oque esta atraz*/
+}
+
+.item.boxOpen{
+    transform: rotateY(0deg);
+}
+.boxOpen::after,
+.boxMatch::after{
+    transform: rotateY(180deg);
+}
